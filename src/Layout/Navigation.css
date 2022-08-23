@@ -1,0 +1,22 @@
+.logo {
+    height: 100px;
+    padding: 10px;
+    
+}
+
+.logo-motto {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.signin {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
