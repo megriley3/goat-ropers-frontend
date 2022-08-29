@@ -19,7 +19,6 @@ function Layout(){
             .then(setEvents)
             .catch(setError)
         return () => abortController.abort();
-        console.log("load")
     }
 
     const unfinishedEvents = events.filter((e) => !e.finished);

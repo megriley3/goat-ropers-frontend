@@ -59,5 +59,27 @@ headers.append("Content-Type", "application/json");
         body: JSON.stringify({data: event}), 
         signal
     }
-    return await fetchJson(url, options)
+    return await fetchJson(url, options);
+  }
+
+  export async function addTournament(tournament, signal){
+    const url = `${API_BASE_URL}/tournaments/:eventId`;
+    const options = {
+      method: "POST",
+      headers,
+      body: JSON.stringify({data: tournament}),
+      signal
+    }
+    return await fetchJson(url, options);
+  }
+
+  export async function editEvent(event, signal){
+    const url = `${API_BASE_URL}/events`;
+    const options = {
+      method: "PUT", 
+      headers,
+      body: JSON.stringify({data: event}),
+      signal
+    }
+    return await fetchJson(url, options);
   }

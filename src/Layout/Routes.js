@@ -10,6 +10,7 @@ import SignIn from "../Routes/SignIn";
 import CreateEvent from "../AdminRoutes/CreateEvent";
 import EventDrafts from "../AdminRoutes/EventDrafts";
 import PublishedEvents from "../AdminRoutes/PublishedEvents";
+import EditEvent from "../AdminRoutes/EditEvent";
 
 function Routes({unfinishedEvents, finishedEvents, setEvents, events, loadEvents}){
     return (
@@ -34,9 +35,12 @@ function Routes({unfinishedEvents, finishedEvents, setEvents, events, loadEvents
                 <SignIn />
             </Route>
             <Route exact={true} path="/admin-events" >
-                <CreateEvent setEvents={setEvents} events = {events} loadEvents={loadEvents}/>
+                <CreateEvent  events = {events} loadEvents={loadEvents}/>
                 <PublishedEvents events={events}/>
                 <EventDrafts/>
+            </Route>
+            <Route exact={true} path="/admin/:eventId">
+                <EditEvent events={events} loadEvents={loadEvents}/>
             </Route>
             <Route>
                 <NotFound/>

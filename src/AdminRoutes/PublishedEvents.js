@@ -1,4 +1,6 @@
 import React from "react";
+import {Link} from "react-router-dom";
+import AddTournament from "./AddTournament";
 import DeleteButton from "./DeleteButton";
 import "./PublishedEvents.css"
 
@@ -13,7 +15,7 @@ function PublishedEvents({events}){
                 <tr key={e.event_name}>
                     <td>{e.event_name}</td>
                     <td>{e.start_date} - {e.end_date}</td>
-                    <td><DeleteButton/></td>
+                    <td><Link to={`/admin/${e.event_id}`}>Details</Link></td>
                 </tr>
             )
         } else {
@@ -21,7 +23,7 @@ function PublishedEvents({events}){
                 <tr key={e.event_name}>
                     <td>{e.event_name}</td>
                     <td>{e.start_date}</td>
-                    <td><DeleteButton/></td>
+                    <td><Link to={`/admin/${e.event_id}`}>Details</Link></td>
                 </tr>
             )
         }
