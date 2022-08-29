@@ -2,9 +2,24 @@ import React from "react";
 import {Link} from "react-router-dom";
 import AddTournament from "./AddTournament";
 import DeleteButton from "./DeleteButton";
+import {editEvent} from "../utils/api"
 
-function EventDrafts({events}){
+function EventDrafts({events, loadEvents}){
     const drafts = events.filter((e) => !e.published);
+
+    const handleClick = ({target})=>{
+        const abortController = new AbortController();
+        let updatedEvent = events.find((e) => e.event_id === Number(target.value));
+        updatedEvent = {
+            ...updatedEvent,
+            published: true
+        }
+        editEvent(updatedEvent, abortController.signal)
+            .then(()=>loadEvents())
+            .catch((err) => console.log(err))
+        console.log(updatedEvent)   
+    }
+
 
     const rows = drafts.map((e) => {
         if(e.end_date){
@@ -13,7 +28,7 @@ function EventDrafts({events}){
                     <td>{e.event_name}</td>
                     <td>{e.start_date} - {e.end_date}</td>
                     <td><Link to={`/admin/${e.event_id}`}>Details</Link></td>
-                    <td><button className="btn">Publish</button></td>
+                    <td><button className="btn" value={e.event_id} onClick={handleClick}>Publish</button></td>
                 </tr>
             )
         } else {
@@ -22,7 +37,7 @@ function EventDrafts({events}){
                     <td>{e.event_name}</td>
                     <td>{e.start_date}</td>
                     <td><Link to={`/admin/${e.event_id}`}>Details</Link></td>
-                    <td><button className="btn">Publish</button></td>
+                    <td><button className="btn" onClick={handleClick}>Publish</button></td>
                 </tr>
             )
         }

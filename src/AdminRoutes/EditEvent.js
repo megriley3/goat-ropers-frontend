@@ -75,7 +75,6 @@ function EditEvent({events, loadEvents}){
         editEvent(updatedEvent, abortController.signal)
             .then(() => loadEvents())
             .catch(setError)
-        console.log(event.target.value, "save")
     }
 
     if(currentEvent){
