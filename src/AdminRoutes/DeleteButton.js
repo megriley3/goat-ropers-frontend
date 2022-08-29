@@ -1,7 +1,17 @@
 import React from "react";
+import {deleteEvent} from "../utils/api";
 
-function DeleteButton(){
-    const handleDelete = ()=>console.log('Delete');
+function DeleteButton({eventId, loadEvents, setError}){
+    const handleDelete = ()=>{
+        const controller = new AbortController();
+        const result = window.confirm("Delete this event? You will not be able to recover it.");
+        if(result){
+            deleteEvent(eventId, controller.signal)
+                .then(()=>loadEvents())
+                .catch(setError)
+        }
+    }
+    
     return     (
         <button type="button" className="btn btn-danger" onClick={()=>handleDelete(/*deckId*/)}>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">

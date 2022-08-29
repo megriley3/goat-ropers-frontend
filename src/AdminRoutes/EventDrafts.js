@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import AddTournament from "./AddTournament";
 import DeleteButton from "./DeleteButton";
-import {editEvent} from "../utils/api"
+import {editEvent} from "../utils/api";
+import ErrorAlert from "../Layout/ErrorAlert";
 
 function EventDrafts({events, loadEvents}){
+    const [error, setError] = useState(null);
     const drafts = events.filter((e) => !e.published);
 
     const handleClick = ({target})=>{
@@ -29,6 +31,7 @@ function EventDrafts({events, loadEvents}){
                     <td>{e.start_date} - {e.end_date}</td>
                     <td><Link to={`/admin/${e.event_id}`}>Details</Link></td>
                     <td><button className="btn" value={e.event_id} onClick={handleClick}>Publish</button></td>
+                    <td><DeleteButton eventId={e.event_id} loadEvents={loadEvents} setError={setError}/></td>
                 </tr>
             )
         } else {
@@ -38,6 +41,7 @@ function EventDrafts({events, loadEvents}){
                     <td>{e.start_date}</td>
                     <td><Link to={`/admin/${e.event_id}`}>Details</Link></td>
                     <td><button className="btn" onClick={handleClick}>Publish</button></td>
+                    <td><DeleteButton eventId={e.event_id} loadEvents={loadEvents} setError={setError}/></td>
                 </tr>
             )
         }
@@ -45,12 +49,14 @@ function EventDrafts({events, loadEvents}){
 
     return (
         <div>
+            <ErrorAlert error={error}/>
             <h3>Event Drafts</h3>
             <table className="table  table-striped">
                 <thead>
                     <tr>
                         <th>Event Name</th>
                         <th>Date(s)</th>
+                        <th></th>
                         <th></th>
                         <th></th>
                     </tr>

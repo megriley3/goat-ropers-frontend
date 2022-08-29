@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import AddTournament from "./AddTournament";
 import DeleteButton from "./DeleteButton";
+import ErrorAlert from "../Layout/ErrorAlert";
 import "./PublishedEvents.css"
 
-function PublishedEvents({events}){
+function PublishedEvents({events, loadEvents}){
+    const [error, setError] = useState(null);
     const futurePublishedEvents = events.filter((e) => e.published && !e.finished);
     const pastPublishedEvents = events.filter((e) => e.published && e.finished);
     let pastTable = null;
@@ -16,6 +18,7 @@ function PublishedEvents({events}){
                     <td>{e.event_name}</td>
                     <td>{e.start_date} - {e.end_date}</td>
                     <td><Link to={`/admin/${e.event_id}`}>Details</Link></td>
+                    <td><DeleteButton eventId={e.event_id} loadEvents={loadEvents} setError={setError}/></td>
                 </tr>
             )
         } else {
@@ -24,6 +27,7 @@ function PublishedEvents({events}){
                     <td>{e.event_name}</td>
                     <td>{e.start_date}</td>
                     <td><Link to={`/admin/${e.event_id}`}>Details</Link></td>
+                    <td><DeleteButton eventId={e.event_id} loadEvents={loadEvents} setError={setError}/></td>
                 </tr>
             )
         }
@@ -58,12 +62,14 @@ function PublishedEvents({events}){
 
     return (
         <div>
+            <ErrorAlert error={error}/>
             <h3>Published Events</h3>
             <table className="table  table-striped">
                 <thead>
                     <tr>
                         <th>Event Name</th>
                         <th>Date(s)</th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
