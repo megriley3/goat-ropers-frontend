@@ -37,7 +37,7 @@ function Routes({unfinishedEvents, finishedEvents, setEvents, events, loadEvents
             <Route exact={true} path="/admin-events" >
                 <CreateEvent  events = {events} loadEvents={loadEvents}/>
                 <PublishedEvents events={events}/>
-                <EventDrafts/>
+                <EventDrafts events={events}/>
             </Route>
             <Route exact={true} path="/admin/:eventId">
                 <EditEvent events={events} loadEvents={loadEvents}/>
