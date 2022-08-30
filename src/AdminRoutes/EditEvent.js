@@ -64,6 +64,11 @@ function EditEvent({events, loadEvents}){
             modalBodyInput.id = "location";
             modalBodyInput.type = "text";
             modalBodyInput.value = updatedEvent.location;
+        } else if (detail==="Logo"){
+            modalBodyInput.name = "logo";
+            modalBodyInput.id="logo";
+            modalBodyInput.type="file";
+            modalBodyInput.value = updatedEvent.logo;
         }
         
 
@@ -93,7 +98,7 @@ function EditEvent({events, loadEvents}){
                         </tr>
                         <tr>
                             <td>Location</td>
-                            <td>eventLocation</td>
+                            <td>{currentEvent.location}</td>
                             <td>
                                 <button type="button" className="btn" data-bs-toggle="modal" data-bs-target="#changeDetails" data-bs-detail="Location" onClick={handleClick}>Change</button>
                             </td>
@@ -111,6 +116,13 @@ function EditEvent({events, loadEvents}){
                             <td>{currentEvent.end_date}</td>
                             <td>
                                 <button type="button" className="btn" data-bs-toggle="modal" data-bs-target="#changeDetails" data-bs-detail="End Date" onClick={handleClick}>Change</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Logo</td>
+                            <td>{currentEvent.logo}</td>
+                            <td>
+                                <button type="button" className="btn" data-bs-toggle="modal" data-bs-target="#changeDetails" data-bs-detail="Logo" onClick={handleClick}>Change</button>
                             </td>
                         </tr>
                     </tbody>

@@ -11,6 +11,7 @@ import CreateEvent from "../AdminRoutes/CreateEvent";
 import EventDrafts from "../AdminRoutes/EventDrafts";
 import PublishedEvents from "../AdminRoutes/PublishedEvents";
 import EditEvent from "../AdminRoutes/EditEvent";
+import TournamentsList from "../AdminRoutes/TournamentsList";
 
 function Routes({unfinishedEvents, finishedEvents, setEvents, events, loadEvents}){
     return (
@@ -41,6 +42,7 @@ function Routes({unfinishedEvents, finishedEvents, setEvents, events, loadEvents
             </Route>
             <Route exact={true} path="/admin/:eventId">
                 <EditEvent events={events} loadEvents={loadEvents} />
+                <TournamentsList />
             </Route>
             <Route>
                 <NotFound/>
