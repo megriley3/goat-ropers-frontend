@@ -42,7 +42,6 @@ function Routes({unfinishedEvents, finishedEvents, setEvents, events, loadEvents
             </Route>
             <Route exact={true} path="/admin/:eventId">
                 <EditEvent events={events} loadEvents={loadEvents} />
-                <TournamentsList />
             </Route>
             <Route>
                 <NotFound/>

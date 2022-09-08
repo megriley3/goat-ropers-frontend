@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {editEvent} from "../utils/api";
 import ErrorAlert from "../Layout/ErrorAlert";
+import TournamentsList from "./TournamentsList";
 
 function EditEvent({events, loadEvents}){
     const {eventId} = useParams();
@@ -149,6 +150,8 @@ function EditEvent({events, loadEvents}){
                 </div>
             </div>
             </div>
+            
+            <TournamentsList selectedEvent={updatedEvent} />
 
             </main>
         )

@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import AddTournament from "./AddTournament";
 import DeleteButton from "./DeleteButton";
 import {editEvent} from "../utils/api";
 import ErrorAlert from "../Layout/ErrorAlert";
